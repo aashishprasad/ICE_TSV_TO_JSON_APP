@@ -6,7 +6,7 @@
 <form #userPost = "ngForm" (ngSubmit)="onSubmit(userPost.value)">
     <div  class="form-group">
       <label for="exampleFormControlTextarea1" style="font-size: 24px; text-align: center; margin: 20px 0;">TSV Content</label>
-      <textarea class="form-control" style="width: 500px; height: 300px;" id="exampleFormControlTextarea1" rows="3" name = "data" ngModel placeholder= "Enter Your Data">{{tsv_data}}</textarea>
+      <textarea class="form-control" style="width: 500px; height: 300px;" id="exampleFormControlTextarea1" rows="3" name = "data" ngModel placeholder= "Enter Your Data" value= "{{tsv_data}}"></textarea>
     </div>
     <button type="submit" id = "submit_bt" class="btn btn-primary mb-2" (click)='myModalOpen()'>Submit</button>
 </form>
