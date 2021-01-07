@@ -32,13 +32,23 @@ app.get('/api/parser/result', (req,res) => {
 
 });
 
+app.get('/api/parser/result/previous', (req,res) => {
+    
+    filename = req.query.filename;
+ 
+    // call tsv2json Business Rules
+    let a = run(filename);
+    a.then(function(result) {
+        res.send(result);
+     })
+ 
+ });
 
 app.post('/api/parser', (req,res) => {
 
     
     //let tsvData = req.body;
     let tsvData = req.body.data.data;
-    console.log(tsvData);
 
     const fs = require('fs');
     filename = "data.txt";
