@@ -1,0 +1,58 @@
+.myModal{
+  width: 510px;
+  height: 400px;
+  margin-left: 32rem;
+  display: none;
+  margin-top: -20rem;
+  position: absolute;
+  z-index: 2;
+}
+
+.result{
+  border: solid 1px black;
+  width: 33rem;
+  height: 35rem;
+  padding: 40px 0px 0px 66px;
+}
+
+.result_div{
+  border: solid 1px black; 
+  width:25rem;
+  height:18rem;
+  padding: 10px;
+  overflow-y: initial;
+  overflow-x: hidden;
+}
+
+.pre{
+  height:10rem;
+  white-space:pre-wrap !important;
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+
+.result_error{
+  border: solid 1px black; 
+  width:25rem;
+  height:10rem;
+  padding: 10px;
+}
+
+.result_url{
+  border: solid 1px black; 
+  width:25rem;
+  height:3rem;
+  padding: 10px;
+}
+
+.copy_btn{
+  margin-left: 75px;
+  margin-top: -6px;
+}
+
+.close{
+    font-weight: 600;
+    color: red;
+    margin-top: 0.7rem;
+    font-size: 30px;
+}
