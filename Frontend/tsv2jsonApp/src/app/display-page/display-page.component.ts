@@ -12,7 +12,6 @@ import { ActivatedRoute } from '@angular/router';
 export class DisplayPageComponent implements OnInit {
   resultModel: Result_Model = {json_result: "", url_result: "", error_result:""};
   tsv_data : any;
-  currentFilename;
   
   constructor(private http: HttpClient,
               private _clipboardService: ClipboardService,
@@ -32,23 +31,22 @@ export class DisplayPageComponent implements OnInit {
   getDatabyFileName(filename){
     this.http.get('http://localhost:3000/api/parser/result?filename='+ filename, {responseType: 'text' as 'json'}).subscribe(val => {
       this.tsv_data = val;
-      this.getOldData(this.tsv_data);
-    });
-
+      this.getOldData(filename);
+    })
   }
 
+  getOldData(filename){
 
-  getOldData(data){
-    console.log("Old data called"+ data);
-    this.http.post<Result_Model>('http://localhost:3000/api/parser', { data }).subscribe(val => {
+    this.http.get<Result_Model>('http://localhost:3000/api/parser/result/previous?filename='+ filename, {responseType: 'json'}).subscribe(val => {
       this.resultModel.url_result = val.url_result;
       this.resultModel.json_result = JSON.stringify(val.json_result);
-      this.resultModel.error_result = val.error_result;
-
-      // call myModalOpen()
-      this.myModalOpen();
+      this.resultModel.error_result = val.error_result;    
     });
+    
+    // call myModalOpen()
+    this.myModalOpen();
   }
+
 
   onSubmit(data){
     this.http.post<Result_Model>('http://localhost:3000/api/parser', { data }).subscribe(val => {
