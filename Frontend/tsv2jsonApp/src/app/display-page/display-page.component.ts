@@ -39,7 +39,7 @@ export class DisplayPageComponent implements OnInit {
 
     this.http.get<Result_Model>('http://localhost:3000/api/parser/result/previous?filename='+ filename, {responseType: 'json'}).subscribe(val => {
       this.resultModel.url_result = val.url_result;
-      this.resultModel.json_result = JSON.stringify(val.json_result);
+      this.resultModel.json_result = JSON.stringify(val.json_result, undefined, 2);
       this.resultModel.error_result = val.error_result;    
     });
     
@@ -51,7 +51,7 @@ export class DisplayPageComponent implements OnInit {
   onSubmit(data){
     this.http.post<Result_Model>('http://localhost:3000/api/parser', { data }).subscribe(val => {
       this.resultModel.url_result = val.url_result;
-      this.resultModel.json_result = JSON.stringify(val.json_result);
+      this.resultModel.json_result = JSON.stringify(val.json_result, undefined, 2);
       this.resultModel.error_result = val.error_result;
     });
   }
