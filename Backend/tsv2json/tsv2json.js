@@ -123,9 +123,14 @@ const parseAsFile = async (filename) => {
   }
 }
 
+const getErrorLogs = () => {
+  return err_log;
+}
+
 module.exports = { 
   parseAsFile,
   parseAsString,
   orderDateToISODate,
-  getISOOrderDateIfAfter
+  getISOOrderDateIfAfter,
+  getErrorLogs
 };
