@@ -63,23 +63,33 @@ app.post('/api/parser', (req,res) => {
         if(tsvData == ""){
             res.send({error_result: "Error: Please enter Valid Data."})
         }else{
-            const fs = require('fs');
+            let tabs = tsvData.match(/(\t)/gm);
+            tab_count = 0;
+            for(i in tabs){
+                tab_count++;
+            }
+            if(tab_count < 40){
+                res.send({error_result: "Error: Incorrect Data Format. Please enter Valid Data."})
+            }else{
+
+                const fs = require('fs');
     
-            call_num = call_num + 1;
-            filename = "data" + call_num + ".txt";
+                call_num = call_num + 1;
+                filename = "data" + call_num + ".txt";
     
 
-            fs.writeFile("./tmp/" + filename, tsvData, function(err) {
-                if(err) {
-                    return console.log(err);
-                }
-            }); 
+                fs.writeFile("./tmp/" + filename, tsvData, function(err) {
+                    if(err) {
+                        return console.log(err);
+                    }
+                }); 
 
-            // call tsv2json Business Rules
-            let a = run(filename);
-                a.then(function(result) {
-                    res.send(result);
-            })
+                // call tsv2json Business Rules
+                let a = run(filename);
+                    a.then(function(result) {
+                        res.send(result);
+                })
+            }   
         }
     }
 });
@@ -96,7 +106,7 @@ async function getFileData(filename){
 
 async function run(filename)  {
     const json_result = await parserTools.parseAsFile("./tmp/" + filename);
-    return({json_result, error_result: "Error: ", url_result: "http://localhost:4200/result/" + filename});
+    return({json_result, error_result: "Error: " + parserTools.getErrorLogs(), url_result: "http://localhost:4200/result/" + filename});
 }
 
 const port = process.env.PORT || 3000;
