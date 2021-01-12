@@ -2,12 +2,12 @@ filename = process.argv[2];
 
 async function getFileData(filename){
     const fs = require('fs').promises;
-        return await fs.readFile("./" + filename, 'utf8', function(err, data) {
+        return await fs.readFile("" + filename, 'utf8', function(err, data) {
             if (err) throw err;
         });
 };
 
-getFileData("sampledata.tsv")
+getFileData(filename)
     .then(function (data){
         data = data.replace(/(\n)/gm, "\\n");
         data = data.replace(/\"/gm, "\\\"");
