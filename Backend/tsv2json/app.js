@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 let filename  = "";
+let call_num = 0;
 
 app.use(express.json());
 
@@ -49,9 +50,11 @@ app.post('/api/parser', (req,res) => {
     
     //let tsvData = req.body;
     let tsvData = req.body.data.data;
-
     const fs = require('fs');
-    filename = "data.txt";
+    
+    call_num = call_num + 1;
+    filename = "data" + call_num + ".txt";
+    
 
     fs.writeFile("./tmp/" + filename, tsvData, function(err) {
         if(err) {
