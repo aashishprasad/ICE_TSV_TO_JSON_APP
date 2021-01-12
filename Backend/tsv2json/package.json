@@ -1,0 +1,22 @@
+{
+  "name": "tsv2json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "async-file": "^2.0.2",
+    "express": "^4.17.1",
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aashishprasad/ICE_TSV_TO_JSON_APP/tree/master/Backend/tsv2json"
+  },
+  "author": "Aashish Prasad",
+  "license": "ISC"
+}
